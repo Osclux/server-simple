@@ -14,5 +14,11 @@ public enum DefaultSessionName {
     vilan,
     visionen,
     synen,
-    periskopet
+    periskopet,
+    kristin,
+    oscar,
+    john,
+    johanb,
+    johanc
+
 }
