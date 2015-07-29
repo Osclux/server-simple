@@ -6,7 +6,7 @@ The idea is that we give a tester a session name (a chat room name) and the test
 friends during the entire test period. 
 
 The mobile client should first ask the user for a chat room name, then ask the server for the data for that 
-chat room (session name) by making this call: http://localhost:4567/session/<name> where <name> is replaced by 
+chat room (session name) by making this call: http://localhost:4567/session/name where name is replaced by 
 the chat room name entered by the user. The server returns the parameters needed to connect to the OpenTok session.
 
 Default session names are:
