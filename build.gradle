@@ -1,6 +1,7 @@
 group 'se.konferensplattan'
 version '0.1-SNAPSHOT'
 
+apply plugin: 'maven'
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = "se.konferensplattan.SimpleServer"
@@ -22,6 +23,24 @@ dependencies {
 
 }
 
+applicationDefaultJvmArgs = ["-DAPI_KEY=45242822", "-DAPI_SECRET=6ed906458160003b1c93c2c2e48e0fb177587f13"]
 run.systemProperty 'API_KEY', '45242822'
 run.systemProperty 'API_SECRET', '6ed906458160003b1c93c2c2e48e0fb177587f13'
+
+
+
+task writeNewPom << {
+    pom {
+        project {
+            inceptionYear '2014'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
+}
 
