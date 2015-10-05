@@ -16,13 +16,14 @@ import static spark.Spark.*;
 
 public class SimpleServer {
 
-    private static final String apiKey = System.getProperty("API_KEY");
-    private static final String apiSecret = System.getProperty("API_SECRET");
+    private static final String apiKey = System.getenv().get("API_KEY");
+    private static final String apiSecret = System.getenv().get("API_SECRET");
 
     public static void main(String[] args) throws OpenTokException, IOException {
 
+
         if (apiKey == null || apiKey.isEmpty() || apiSecret == null || apiSecret.isEmpty()) {
-            System.out.println("You must define API_KEY and API_SECRET system properties in the build.gradle file.");
+            System.out.println("You must define API_KEY and API_SECRET in the .env file when running locally and with heroku config for running on heroku.");
             System.exit(-1);
         }
 
@@ -31,8 +32,9 @@ public class SimpleServer {
 
         SessionService.createDefaultSessions();
 
-
-        externalStaticFileLocation("./public");
+        port(Integer.valueOf(System.getenv("PORT")));
+        //externalStaticFileLocation("./public");
+        staticFileLocation("/public");
         Configuration freemarkerConfig = new Configuration();
         freemarkerConfig.setClassForTemplateLoading(SimpleServer.class, "freemarker");
         get("/", (request, response) -> {
